@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duplanje</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1c1c1c;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .card-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    input {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 24px;
+      border-radius: 8px;
+      border: none;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .red { background: #e74c3c; color: white; }
+    .green { background: #2ecc71; color: white; }
+    .blue { background: #3498db; color: white; }
+    .output {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Duplanje</h1>
+  <p>Unesi poslednje 4 slot karte:</p>
+  <div class="card-inputs">
+    <input maxlength="1" id="c1">
+    <input maxlength="1" id="c2">
+    <input maxlength="1" id="c3">
+    <input maxlength="1" id="c4">
+  </div>
+  <div class="buttons">
+    <button class="red">Crveno</button>
+    <button class="green" onclick="pretrazi()">Sledeća</button>
+    <button class="blue">Crno</button>
+  </div>
+  <div class="output" id="rezultat"></div>
+
+  <script>
+    const baza = {
+      "rdrc": "Crveno",
+      "crcr": "Crno",
+      "rcrc": "Crveno",
+      "ccrc": "Crno",
+    };
+
+    function pretrazi() {
+      const c1 = document.getElementById('c1').value.toLowerCase();
+      const c2 = document.getElementById('c2').value.toLowerCase();
+      const c3 = document.getElementById('c3').value.toLowerCase();
+      const c4 = document.getElementById('c4').value.toLowerCase();
+
+      const unos = c1 + c2 + c3 + c4;
+
+      let odgovor = baza[unos] || "Nema podataka za ovu kombinaciju.";
+      document.getElementById('rezultat').innerText = "Preporuka: " + odgovor;
+    }
+  </script>
+</body>
+</html>
